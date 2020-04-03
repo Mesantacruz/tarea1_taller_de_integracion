@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Rick and Morty Info</title>
+</head>
+
+<!-- Adding some style to table (OPTIONAL) -->
+<style type="text/css">
+
+    h1{
+        margin: 40px
+    }
+
+    th:tr{
+        color: blue;
+
+    }
+    tr:nth-of-type(2n){
+        border: 1px solid black;
+        background-color: rgba(150, 150, 150, 0.5);
+
+    }
+
+    td{
+        padding: 8px 8px;
+        border: 1px solid black;
+    }
+    *
+    {
+      box-sizing: border-box;
+    }
+
+    /* Style the search field */
+    form.example input[type=text] {
+      padding: 20px;
+      font-size: 17px;
+      border: 1px solid grey;
+      float: left;
+      width: 70%;
+      background: #f1f1f1;
+      margin: 20px;
+    }
+
+    /* Style the submit button */
+    form.example button {
+      float: left;
+      width: 20%;
+      padding: 20px;
+      background: #2196F3;
+      color: white;
+      font-size: 17px;
+      border: 1px solid grey;
+      border-left: none; /* Prevent double borders */
+      cursor: pointer;
+      margin: 20px;
+    }
+
+    form.example button:hover {
+      background: #0b7dda;
+    }
+
+    /* Clear floats */
+    form.example::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+</style>
+
+<body>
+
+ <br>
+ <!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- The form -->
+<form class="example" action={{ url_for('search') }}>
+  <input type="text" placeholder="Search..." name="search">
+  <button type="submit"><i class="fa fa-search"></i>></button>
+</form>
+
+
+ <h1>Capítulos</h1>
+
+
+<table style="margin-left: 20px;">
+<!-- Table headers -->
+    <th>
+        <tr style="color: blue; ">
+        <td>Episodio</td>
+        <td>Nombre Capítulo</td>
+        <td>Fecha de Lanzamiento</td>
+</tr>
+    </th>
+
+<!-- For loop logic of jinja template -->
+{%for i in capitulos%}
+
+<!-- table rows -->
+<tr>
+    <td>{{i["episode"]}}</td>
+    <td><a href= {{ "/capitulo/" + i["episode"] }}> {{i["name"]}}</a></td>
+    <td>{{i["air_date"]}}</td>
+
+{%endfor%}
+
+</tr>
+
+</table>
+
+
+</body>
+</html>
