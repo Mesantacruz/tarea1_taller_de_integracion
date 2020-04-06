@@ -3,12 +3,12 @@ import requests
 
 app = Flask(__name__)
 
-url_cap = 'https://rickandmortyapi.com/api/episode'
+url_cap = 'https://integracion-rick-morty-api.herokuapp.com/api/episode'
 resp_cap = requests.get(url=url_cap)
 data_cap = resp_cap.json()
 data_cap = data_cap["results"]
 
-url_cap2 = 'https://rickandmortyapi.com/api/episode/?page=2'
+url_cap2 = 'https://integracion-rick-morty-api.herokuapp.com/api/episode/?page=2'
 resp_cap2 = requests.get(url=url_cap2)
 data_cap2 = resp_cap2.json()
 data_cap2 = data_cap2["results"]
@@ -41,7 +41,7 @@ def capitulo(name):
 @app.route('/personaje/<id>')
 def personaje(id):
     episodios = []
-    url_char_name = 'https://rickandmortyapi.com/api/character/' + id
+    url_char_name = 'https://integracion-rick-morty-api.herokuapp.com/api/character/' + id
     resp_char_name = requests.get(url=url_char_name)
     data_char_name = resp_char_name.json()
     for i in data_char_name["episode"]:
@@ -53,7 +53,7 @@ def personaje(id):
 @app.route('/lugar/<id>')
 def lugar(id):
     residentes = []
-    url_loc = 'https://rickandmortyapi.com/api/location/' + id
+    url_loc = 'https://integracion-rick-morty-api.herokuapp.com/api/location/' + id
     resp_loc = requests.get(url=url_loc)
     data_loc = resp_loc.json()
     for i in data_loc["residents"]:
@@ -71,35 +71,35 @@ def search():
     personajes = []
     lugares = []
 
-    url_name = 'https://rickandmortyapi.com/api/location/?name=' + query
+    url_name = 'https://integracion-rick-morty-api.herokuapp.com/api/location/?name=' + query
     resp_name = requests.get(url=url_name)
     data_name = resp_name.json()
 
     if "error" not in data_name:
         for i in range(1, data_name["info"]["pages"] + 1):
-            url_name = 'https://rickandmortyapi.com/api/location/?page=' + str(i) + '&name=' + query
+            url_name = 'https://integracion-rick-morty-api.herokuapp.com/api/location/?page=' + str(i) + '&name=' + query
             resp_name = requests.get(url=url_name)
             data_name = resp_name.json()
             lugares += data_name["results"]
 
-    url_name = 'https://rickandmortyapi.com/api/character/?name=' + query
+    url_name = 'https://integracion-rick-morty-api.herokuapp.com/api/character/?name=' + query
     resp_name = requests.get(url=url_name)
     data_name = resp_name.json()
 
     if "error" not in data_name:
         for i in range(1, data_name["info"]["pages"] + 1):
-            url_name = 'https://rickandmortyapi.com/api/character/?page=' + str(i) + '&name=' + query
+            url_name = 'https://integracion-rick-morty-api.herokuapp.com/api/character/?page=' + str(i) + '&name=' + query
             resp_name = requests.get(url=url_name)
             data_name = resp_name.json()
             personajes += data_name["results"]
 
-    url_name = 'https://rickandmortyapi.com/api/episode/?name=' + query
+    url_name = 'https://integracion-rick-morty-api.herokuapp.com/api/episode/?name=' + query
     resp_name = requests.get(url=url_name)
     data_name = resp_name.json()
 
     if "error" not in data_name:
         for i in range(1, data_name["info"]["pages"] + 1):
-            url_name = 'https://rickandmortyapi.com/api/episode/?page=' + str(i) + '&name=' + query
+            url_name = 'https://integracion-rick-morty-api.herokuapp.com/api/episode/?page=' + str(i) + '&name=' + query
             resp_name = requests.get(url=url_name)
             data_name = resp_name.json()
             capitulos += data_name["results"]
